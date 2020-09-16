@@ -167,6 +167,42 @@ def partition(arr,first,last):
 
     return right
 
+# mergeSort 
+def mergeSort(arr):
+    
+    if len(arr) > 1:
+        
+        mid = len(arr) // 2
+        
+        left = arr[:mid] #indexcing from 0 to mid
+        right = arr[mid:] # indexcing from mid to last element of an array
+        
+        #calling reccurcively fro left and right portion
+        mergeSort(left)
+        mergeSort(right)
+        
+        i = j = k = 0
+        
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                arr[k] = left[i]
+                i += 1
+            else:
+                arr[k] = right[j]
+                j += 1
+            k += 1
+            
+        # Checking if any element was left behind
+        while i < len(left):
+            arr[k] = left[i]
+            i += 1
+            k += 1
+            
+        while j < len(right):
+            arr[k] = right[j]
+            j += 1
+            k += 1
+
 #Main Function & Function Calling 
 arr = [25,11,95,15,12,96,15,8,96,1,2,3,4,5,6]
 print("Array - List : {}".format(arr))
@@ -183,3 +219,4 @@ reverseArrayListReccursive(arr,0,size-1)
 nonRepeatingElement(arr,size)
 quickSortFunction(arr,size)
 print("\nQuick Sort : {}".format(arr))
+mergeSort(arr)
